@@ -112,7 +112,6 @@ public class Product {
 	}
 
 	public Product(String model, Double price, Integer[] size, String image, Category category) {
-		super();
 		this.model = model;
 		this.price = price;
 		this.size = size;

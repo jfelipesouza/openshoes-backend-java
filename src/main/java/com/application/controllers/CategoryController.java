@@ -40,7 +40,7 @@ public class CategoryController {
 		Category category1 = new Category(category.getType());
 		CategoryDto category2= service.saveCategory(category1);
 		return ResponseEntity.status(HttpStatus.CREATED).body(category2);
-	}
+	}	
 
 	@GetMapping("/categories/{idcategory}")
 	public ResponseEntity<Category> getCategoryId(@PathVariable("idcategory") Long idcategory){
@@ -48,7 +48,8 @@ public class CategoryController {
 	}
 	
 	@PutMapping("/categories/{idcategory}")
-	public ResponseEntity<CategoryDto> updateCategory(@PathVariable("idcategory") Long idcategory, @RequestBody Category category){
+	public ResponseEntity<CategoryDto> updateCategory(@PathVariable("idcategory") Long idcategory, @RequestBody CategoryDto categoryDto){
+		Category category = new Category(categoryDto.getType());
 		return ResponseEntity.ok(service.updateCategory(idcategory, category));
 	}
 	

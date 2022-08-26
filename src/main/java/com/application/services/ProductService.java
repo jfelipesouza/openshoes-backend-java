@@ -23,7 +23,7 @@ public class ProductService {
 
 	public ProductDto saveProduct(Product product) {
 		Product pd = repository.save(product);
-		ProductDto pdDto = new ProductDto( pd.getModel(), pd.getPrice(), pd.getSize(), pd.getImage(),
+		ProductDto pdDto = new ProductDto(pd.getId(),pd.getModel(), pd.getPrice(), pd.getSize(), pd.getImage(),
 				pd.getCategory().getType(), pd.getLogistCode());
 		return pdDto;
 	}

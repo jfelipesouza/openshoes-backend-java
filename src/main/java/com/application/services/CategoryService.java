@@ -35,6 +35,8 @@ public class CategoryService {
 		return category;
 	}
 
+
+
 	public CategoryDto updateCategory(Long id, Category category) {
 		Category category1 = findByIdCategory(id);
 		category1.setType(category.getType());

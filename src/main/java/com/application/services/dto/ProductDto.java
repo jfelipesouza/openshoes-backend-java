@@ -5,6 +5,7 @@ import java.util.List;
 import com.application.entities.Product;
 
 public class ProductDto {
+	private Long id;
 	private String model;
 	private Double price;
 	private Integer[] size;
@@ -19,6 +20,7 @@ public class ProductDto {
 	}
 
 	public ProductDto(Product product) {
+		this.id = product.getId();
 		this.model = product.getModel();
 		this.price = product.getPrice();
 		this.size =product.getSize();
@@ -27,7 +29,8 @@ public class ProductDto {
 		this.logistCode= product.getLogistCode();
 	}
 
-	public ProductDto(String model, Double price, Integer[] size, String image, String typeCategory, String logistCode) {
+	public ProductDto(Long id,String model, Double price, Integer[] size, String image, String typeCategory, String logistCode) {
+		this.id = id;
 		this.model = model;
 		this.price = price;
 		this.size = size;
@@ -60,6 +63,14 @@ public class ProductDto {
 
 	public void setModel(String model) {
 		this.model = model;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Double getPrice() {
