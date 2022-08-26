@@ -16,6 +16,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.application.entities.Category;
 import com.application.repository.CategoryRepository;
 import com.application.services.CategoryService;
+import com.application.services.dto.CategoryDto;
 
 @ExtendWith(SpringExtension.class)
 public class CategoryServiceTest {
@@ -49,7 +50,7 @@ public class CategoryServiceTest {
 	
 	@Test
 	public void returnCategoryWhenSave() {
-		Category category= service.saveCategory(validCategory);
+		CategoryDto category= service.saveCategory(validCategory);
 		Assertions.assertNotNull(category);
 		Mockito.verify(repository).save(validCategory);
 	}

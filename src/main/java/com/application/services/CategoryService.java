@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.application.entities.Category;
 import com.application.repository.CategoryRepository;
+import com.application.services.dto.CategoryDto;
 
 @Service
 public class CategoryService {
@@ -17,8 +18,10 @@ public class CategoryService {
 	@Autowired
 	CategoryRepository repository;
 
-	public Category saveCategory(Category category) {
-		return repository.save(category);
+	public CategoryDto saveCategory(Category category) {
+		repository.save(category);
+		CategoryDto categoryDto = new CategoryDto(category);
+		return categoryDto;
 	}
 
 	public List<Category> findAllCategories() {
@@ -32,10 +35,12 @@ public class CategoryService {
 		return category;
 	}
 
-	public Category updateCategory(Long id, Category category) {
+	public CategoryDto updateCategory(Long id, Category category) {
 		Category category1 = findByIdCategory(id);
 		category1.setType(category.getType());
-		return repository.save(category1);
+		repository.save(category1);
+		CategoryDto categoryDto = new CategoryDto(category1);
+		return categoryDto;
 
 	}
 
