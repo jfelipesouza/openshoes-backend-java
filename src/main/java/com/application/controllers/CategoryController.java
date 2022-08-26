@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.application.entities.Category;
 import com.application.services.CategoryService;
+import com.application.services.dto.CategoryDto;
 
 
 @RestController
@@ -35,8 +36,8 @@ public class CategoryController {
 	
 	
 	@PostMapping("/categories")
-	public ResponseEntity<Category> saveCategory(@RequestBody Category category){
-		Category category1= service.saveCategory(category);
+	public ResponseEntity<CategoryDto> saveCategory(@RequestBody Category category){
+		CategoryDto category1= service.saveCategory(category);
 		return ResponseEntity.status(HttpStatus.CREATED).body(category1);
 	}
 
@@ -46,7 +47,7 @@ public class CategoryController {
 	}
 	
 	@PutMapping("/categories/{idcategory}")
-	public ResponseEntity<Category> updateCategory(@PathVariable("idcategory") Long idcategory, @RequestBody Category category){
+	public ResponseEntity<CategoryDto> updateCategory(@PathVariable("idcategory") Long idcategory, @RequestBody Category category){
 		return ResponseEntity.ok(service.updateCategory(idcategory, category));
 	}
 	
