@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/")
-@Api(value = "Rota dos produtos")	
+@Api(value = "Rota dos produtos",description = "Rotas de produtos")	
 
 public class ProductController {
 
