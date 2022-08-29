@@ -19,50 +19,62 @@ import com.application.entities.Product;
 import com.application.services.ProductService;
 import com.application.services.dto.ProductDto;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/")
+@Api(value = "Rota dos produtos")	
+
 public class ProductController {
 
 	@Autowired
 	ProductService service;
 
 	@PostMapping("/products")
+	@ApiOperation(value="Cadastra novo produto")
 	public ResponseEntity<ProductDto> saveProduct(@RequestBody Product product) {
 		ProductDto pdDto = service.saveProduct(product);
 		return ResponseEntity.status(HttpStatus.CREATED).body(pdDto);
 	}
 
 	@GetMapping("/products")
+	@ApiOperation(value="Lista todos os produtos")
 	public ResponseEntity<List<ProductDto>> getProducts() {
 		List<ProductDto> products = service.findAllProducts();
 		return ResponseEntity.status(HttpStatus.OK).body(products);
 	}
 
 	@GetMapping("/products/{idproduct}")
+	@ApiOperation(value="Busca produto pelo id")
 	public ResponseEntity<ProductDto> getProductId(@PathVariable("idproduct") Long idproduct) {
 		ProductDto pdDto = service.findByIdProduct(idproduct);
 		return ResponseEntity.status(HttpStatus.OK).body(pdDto);
 	}
 
 	@PutMapping("/products")
+	@ApiOperation(value="Atualiza produto pelo id")
 	public ResponseEntity<ProductDto> updateProduct(@RequestBody Product product) {
 		ProductDto pd = service.updateProduct(product);
 		return ResponseEntity.status(HttpStatus.OK).body(pd);
 	}
 
 	@DeleteMapping("/products/{idproduct}")
+	@ApiOperation(value="Apaga produto pelo id")
 	public ResponseEntity<Product> deleteProduct(@PathVariable("idproduct") Long idproduct) {
 		service.deleteProduct(idproduct);
 		return ResponseEntity.noContent().build();
 	}
 
 	@GetMapping("/products/type/{type}")
+	@ApiOperation(value="Busca todos os produtos de uma categoria")
 	public ResponseEntity<List<Product>> getProductCategory(@PathVariable("type") String type) {
 		return ResponseEntity.ok(service.consultCategory(type));
 	}
 
 	@GetMapping("/products/scroll")
+	@ApiOperation(value="Busca quantidades especificas de produtos por requisição")
 	public ResponseEntity<List<Product>> getLimitListProduct(@RequestParam int limit) {
 		List<Product> res = service.consultProductList(limit);
 		return ResponseEntity.status(HttpStatus.OK).body(res);
