@@ -21,7 +21,6 @@ import com.application.services.dto.CategoryDto;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
 
 
 @RestController
