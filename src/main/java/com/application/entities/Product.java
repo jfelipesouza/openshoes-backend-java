@@ -10,20 +10,25 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Size(max= 50 ,min= 3, message= "Produto não deve ter menos que 3 caracteres")
 	@Column(length = 50, nullable = false)
 	private String model;
 	@Column(nullable = false)
 	private Double price;
 	@Column(nullable = false)
 	private Integer[] size;
+	@NotBlank(message= "O produto deve ter uma imagem")
 	@Column(nullable= false)
 	private String image;
+	@NotBlank(message= "Informe código do lojista")
 	@Column(nullable= false)
 	private String logistCode;
 	
@@ -111,12 +116,13 @@ public class Product {
 		this.category = category;
 	}
 
-	public Product(String model, Double price, Integer[] size, String image, Category category) {
+	public Product(String model, Double price, Integer[] size, String image, Category category, String logistCode) {
 		this.model = model;
 		this.price = price;
 		this.size = size;
 		this.image = image;
 		this.category = category;
+		this.logistCode= logistCode;
 	}
 
 	public Product() {

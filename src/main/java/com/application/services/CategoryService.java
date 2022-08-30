@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.application.entities.Category;
+import com.application.entities.Product;
 import com.application.repository.CategoryRepository;
 import com.application.services.dto.CategoryDto;
+import com.application.services.dto.ProductDto;
 
 @Service
 public class CategoryService {
@@ -19,8 +21,8 @@ public class CategoryService {
 	CategoryRepository repository;
 
 	public CategoryDto saveCategory(Category category) {
-		repository.save(category);
-		CategoryDto categoryDto = new CategoryDto(category);
+		Category ct= repository.save(category);
+		CategoryDto categoryDto = new CategoryDto(ct.getId(), ct.getType());
 		return categoryDto;
 	}
 
@@ -29,23 +31,22 @@ public class CategoryService {
 		return categories;
 	}
 
-	public Category findByIdCategory(Long id) {
+	public CategoryDto findByIdCategory(Long id) {
 		Optional<Category> op = repository.findById(id);
 		Category category = op.orElseThrow(() -> new EntityNotFoundException("Categoria não encontrada"));
-		return category;
+		return new CategoryDto(category);
 	}
-
 
 
 	public CategoryDto updateCategory(Long id, Category category) {
-		Category category1 = findByIdCategory(id);
-		category1.setType(category.getType());
-		repository.save(category1);
-		CategoryDto categoryDto = new CategoryDto(category1);
-		return categoryDto;
+		CategoryDto category1 = findByIdCategory(id);
+		Category ct= repository.save(category);
+		category1.setType(ct.getType());
+		return category1;
 
 	}
-
+	
+	
 	public void deleteCategory(Long id) {
 		repository.deleteById(id);
 	}

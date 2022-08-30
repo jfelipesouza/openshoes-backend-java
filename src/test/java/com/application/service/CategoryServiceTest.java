@@ -80,7 +80,7 @@ public class CategoryServiceTest {
 	
 	@Test
 	public void returnsCategoryWhenSearchForId() {
-		Category category= service.findByIdCategory(existingId);
+		CategoryDto category= service.findByIdCategory(existingId);
 		Assertions.assertNotNull(category);
 		Mockito.verify(repository).findById(existingId);
 	}

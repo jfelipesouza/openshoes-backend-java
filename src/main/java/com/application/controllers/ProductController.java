@@ -2,6 +2,8 @@ package com.application.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,10 +55,10 @@ public class ProductController {
 		return ResponseEntity.status(HttpStatus.OK).body(pdDto);
 	}
 
-	@PutMapping("/products")
+	@PutMapping("/products/{idproduct}")
 	@ApiOperation(value="Atualiza produto pelo id")
-	public ResponseEntity<ProductDto> updateProduct(@RequestBody Product product) {
-		ProductDto pd = service.updateProduct(product);
+	public ResponseEntity<ProductDto> updateProduct(@Valid @PathVariable("idproduct") Long idproduct,@RequestBody Product product) {
+		ProductDto pd = service.updateProduct(idproduct, product);
 		return ResponseEntity.status(HttpStatus.OK).body(pd);
 	}
 
@@ -78,5 +80,9 @@ public class ProductController {
 	public ResponseEntity<List<Product>> getLimitListProduct(@RequestParam int limit) {
 		List<Product> res = service.consultProductList(limit);
 		return ResponseEntity.status(HttpStatus.OK).body(res);
+	}
+	@GetMapping("/products/model/{model}")
+	public ResponseEntity<List<Product>> getProductByModel(@PathVariable("model") String model) {
+		return ResponseEntity.ok(service.consultProducts(model));
 	}
 }
