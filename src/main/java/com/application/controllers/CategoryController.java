@@ -52,15 +52,15 @@ public class CategoryController {
 
 	@GetMapping("/categories/{idcategory}")
 	@ApiOperation(value="Retorna a categoria consultando-a pelo id")
-	public ResponseEntity<Category> getCategoryId(@PathVariable("idcategory") Long idcategory){
+	public ResponseEntity<CategoryDto> getCategoryId(@PathVariable("idcategory") Long idcategory){
 		return ResponseEntity.ok(service.findByIdCategory(idcategory));
 	}
 	
 	@PutMapping("/categories/{idcategory}")
 	@ApiOperation(value="Atualiza a categoria de acordo com seu id")
-	public ResponseEntity<CategoryDto> updateCategory(@PathVariable("idcategory") Long idcategory, @RequestBody CategoryDto categoryDto){
-		Category category = new Category(categoryDto.getType());
-		return ResponseEntity.ok(service.updateCategory(idcategory, category));
+	public ResponseEntity<CategoryDto> updateCategory(@PathVariable("idcategory") Long idcategory, @RequestBody Category category){
+		CategoryDto ct= service.updateCategory(idcategory, category);
+		return ResponseEntity.status(HttpStatus.OK).body(ct);
 	}
 	
 	@DeleteMapping("/categories/{idcategory}")

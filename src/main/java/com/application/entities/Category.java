@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -18,6 +19,7 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Size(max= 50 ,min= 3, message= "Categoria não deve ter menos que 3 caracteres")
 	@Column(length = 50, unique = true, nullable = false)
 	private String type;
 	

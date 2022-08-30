@@ -4,7 +4,17 @@ import com.application.entities.Category;
 
 public class CategoryDto {
 
+	private Long id;
 	private String type;
+
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getType() {
 		return type;
@@ -17,9 +27,11 @@ public class CategoryDto {
 	public CategoryDto() {}
 	
 	public CategoryDto(Category category) {
+		this.id= category.getId();
 		this.type = category.getType();
 	}
-	public CategoryDto(String type) {
+	public CategoryDto(Long id, String type) {
+		this.id=id;
 		this.type = type;
 	}
 }

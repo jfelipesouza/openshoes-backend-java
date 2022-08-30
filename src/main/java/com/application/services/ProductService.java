@@ -49,8 +49,8 @@ public class ProductService {
 		return product;
 	}
 
-	public ProductDto updateProduct(Product product) {
-		ProductDto product1 = findByIdProduct(product.getId());
+	public ProductDto updateProduct(Long id,Product product) {
+		ProductDto product1 = findByIdProduct(id);
 		Product pd = repository.save(product);
 		product1.setModel(pd.getModel());
 		product1.setPrice(pd.getPrice());
@@ -75,6 +75,9 @@ public class ProductService {
 		Page<Product> products = repository.findAll(page);
 
 		return products.getContent();
+	}
+	public List<Product> consultProducts(String model) {
+		return repository.consultProduct(model);
 	}
 
 }
