@@ -20,7 +20,7 @@ import com.application.services.ProductService;
 import com.application.services.dto.ProductDto;
 
 @ExtendWith(SpringExtension.class)
-public class ProductServiceTest {
+class ProductServiceTest {
 	private Long existingId;
 	private Long nonExistingId;
 	private Product validProduct;
@@ -56,14 +56,14 @@ public class ProductServiceTest {
 	ProductRepository repository;
 
 	@Test
-	public void returnProductWhenSave() {
+	void returnProductWhenSave() {
 		ProductDto product = service.saveProduct(validProduct);
 		Assertions.assertNotNull(product);
 		Mockito.verify(repository).save(validProduct);
 	}
 
 	@Test
-	public void returnsErrorWhenSavingProduct() {
+	void returnsErrorWhenSavingProduct() {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 			service.saveProduct(invalidProduct);
 		});
@@ -71,7 +71,7 @@ public class ProductServiceTest {
 	}
 
 	@Test
-	public void returnsNothingWhenDeleting() {
+	void returnsNothingWhenDeleting() {
 		Assertions.assertDoesNotThrow(() -> {
 			service.deleteProduct(existingId);
 		});
@@ -79,7 +79,7 @@ public class ProductServiceTest {
 	}
 
 	@Test
-	public void entityNotFoundWhenDeletingNonExistingId() {
+	void entityNotFoundWhenDeletingNonExistingId() {
 		Assertions.assertThrows(EntityNotFoundException.class, () -> {
 			service.deleteProduct(nonExistingId);
 		});
@@ -87,14 +87,14 @@ public class ProductServiceTest {
 	}
 
 	@Test
-	public void returnsProductWhenSearchForId() {
+	void returnsProductWhenSearchForId() {
 		Product product = service.findByIdProd(existingId);
 		Assertions.assertNotNull(product);
 		Mockito.verify(repository).findById(existingId);
 	}
 
 	@Test
-	public void entityNotFoundWhenSearchingNonExistingId() {
+	void entityNotFoundWhenSearchingNonExistingId() {
 		Assertions.assertThrows(EntityNotFoundException.class, () -> {
 			service.findByIdProduct(nonExistingId);
 		});

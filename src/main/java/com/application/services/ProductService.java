@@ -23,9 +23,9 @@ public class ProductService {
 
 	public ProductDto saveProduct(Product product) {
 		Product pd = repository.save(product);
-		ProductDto pdDto = new ProductDto(pd.getId(),pd.getModel(), pd.getPrice(), pd.getSize(), pd.getImage(),
+		return new ProductDto(pd.getId(),pd.getModel(), pd.getPrice(), pd.getSize(), pd.getImage(),
 				pd.getCategory().getType(), pd.getLogistCode());
-		return pdDto;
+		
 	}
 
 	public List<ProductDto> findAllProducts() {
@@ -45,8 +45,8 @@ public class ProductService {
 
 	public Product findByIdProd(Long id) {
 		Optional<Product> op = repository.findById(id);
-		Product product = op.orElseThrow(() -> new EntityNotFoundException("Product não encontrado"));
-		return product;
+		return op.orElseThrow(() -> new EntityNotFoundException("Product não encontrado"));
+		
 	}
 
 	public ProductDto updateProduct(Long id,Product product) {

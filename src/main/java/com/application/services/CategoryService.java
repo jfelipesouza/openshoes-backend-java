@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.application.entities.Category;
-import com.application.entities.Product;
 import com.application.repository.CategoryRepository;
 import com.application.services.dto.CategoryDto;
-import com.application.services.dto.ProductDto;
 
 @Service
 public class CategoryService {
@@ -22,13 +20,11 @@ public class CategoryService {
 
 	public CategoryDto saveCategory(Category category) {
 		Category ct= repository.save(category);
-		CategoryDto categoryDto = new CategoryDto(ct.getId(), ct.getType());
-		return categoryDto;
+		return new CategoryDto(ct.getId(), ct.getType());
 	}
 
 	public List<Category> findAllCategories() {
-		List<Category> categories = repository.findAll();
-		return categories;
+		return repository.findAll();
 	}
 
 	public CategoryDto findByIdCategory(Long id) {

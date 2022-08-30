@@ -23,14 +23,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import com.application.entities.Category;
-import com.application.entities.Product;
 import com.application.services.ProductService;
 import com.application.services.dto.ProductDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ProductControllerTest {
+class ProductControllerTest {
 	private Long existingId;
 	private Long nonExistingId;
 	private ProductDto validProduct;
@@ -68,21 +67,21 @@ public class ProductControllerTest {
 	}
 
 	@Test
-	public void returnsProductWhenExistingId() throws Exception {
+	void returnsProductWhenExistingId() throws Exception {
 		ResultActions result = mockMvc
 				.perform(get("/products/{idproduct}", existingId).accept(MediaType.APPLICATION_JSON));
 		result.andExpect(status().isOk());
 	}
 
 	@Test
-	public void returnsStatus404WhenConsultsNonExistingId() throws Exception {
+	void returnsStatus404WhenConsultsNonExistingId() throws Exception {
 		ResultActions result = mockMvc
 				.perform(get("/products/{idproduct}", nonExistingId).accept(MediaType.APPLICATION_JSON));
 		result.andExpect(status().isNotFound());
 	}
 
 	@Test
-	public void returnProductWhenSave() throws Exception {
+	void returnProductWhenSave() throws Exception {
 		String jsonBody = objMapper.writeValueAsString(newProduct);
 		ResultActions result = mockMvc.perform(post("/products").content(jsonBody)
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
@@ -90,13 +89,13 @@ public class ProductControllerTest {
 	}
 
 	@Test
-	public void returnsListWhenConsultsAllSuccessfully() throws Exception {
+	void returnsListWhenConsultsAllSuccessfully() throws Exception {
 		ResultActions result = mockMvc.perform(get("/products"));
 		result.andExpect(status().isOk());
 	}
 
 	@Test
-	public void returnsStatus201WhenUpdateSuccessfully() throws Exception {
+	void returnsStatus201WhenUpdateSuccessfully() throws Exception {
 		String jsonBody = objMapper.writeValueAsString(validProduct);
 		ResultActions result = mockMvc.perform(put("/products/{idproduct}", existingId).content(jsonBody)
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
@@ -104,7 +103,7 @@ public class ProductControllerTest {
 	}
 
 	@Test
-	public void returnsStatus404WhenUpdatesNonExistingProduct() throws Exception {
+	void returnsStatus404WhenUpdatesNonExistingProduct() throws Exception {
 		String jsonBody = objMapper.writeValueAsString(validProduct);
 		ResultActions result = mockMvc.perform(put("/products/{idproduct}", nonExistingId).content(jsonBody)
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
@@ -113,6 +112,3 @@ public class ProductControllerTest {
 	}
 
 }
-
-
-
