@@ -23,9 +23,9 @@ public class ProductService {
 
 	public ProductDto saveProduct(Product product) {
 		Product pd = repository.save(product);
-		return new ProductDto(pd.getId(),pd.getModel(), pd.getPrice(), pd.getSize(), pd.getImage(),
+		return new ProductDto(pd.getId(), pd.getModel(), pd.getPrice(), pd.getSize(), pd.getImage(),
 				pd.getCategory().getType(), pd.getLogistCode());
-		
+
 	}
 
 	public List<ProductDto> findAllProducts() {
@@ -46,10 +46,10 @@ public class ProductService {
 	public Product findByIdProd(Long id) {
 		Optional<Product> op = repository.findById(id);
 		return op.orElseThrow(() -> new EntityNotFoundException("Product não encontrado"));
-		
+
 	}
 
-	public ProductDto updateProduct(Long id,Product product) {
+	public ProductDto updateProduct(Long id, Product product) {
 		ProductDto product1 = findByIdProduct(id);
 		Product pd = repository.save(product);
 		product1.setModel(pd.getModel());
@@ -76,8 +76,13 @@ public class ProductService {
 
 		return products.getContent();
 	}
+
 	public List<Product> consultProducts(String model) {
 		return repository.consultProduct(model);
+	}
+
+	public List<Product> consultProductsByLogist(String logistCode) {
+		return repository.consultProductByLogist(logistCode);
 	}
 
 }
