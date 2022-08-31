@@ -90,7 +90,7 @@ public class ProductController {
 	}
 
 	@GetMapping("/products/logist/{logistCode}")
-	@ApiOperation(value = "Busca produtos pelo código do logista")
+	@ApiOperation(value = "Busca produtos pelo código do lojista")
 	public ResponseEntity<List<Product>> getProductByLogist(@PathVariable("logistCode") String logistCode) {
 		return ResponseEntity.ok(service.consultProductsByLogist(logistCode));
 	}
