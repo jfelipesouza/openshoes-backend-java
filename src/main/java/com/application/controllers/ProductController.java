@@ -25,8 +25,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-//@CrossOrigin(origins = "https://openshoes-bff.herokuapp.com/")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://openshoes-bff.herokuapp.com/")
+//@CrossOrigin(origins = "*")
 @RequestMapping("/")
 @Api(value = "Rota dos produtos", description = "Rotas de produtos")
 
