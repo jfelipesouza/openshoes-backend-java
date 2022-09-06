@@ -24,7 +24,7 @@ public class ProductService {
 	public ProductDto saveProduct(Product product) {
 		Product pd = repository.save(product);
 		return new ProductDto(pd.getId(), pd.getModel(), pd.getPrice(), pd.getSize(), pd.getImage(),
-				pd.getCategory().getType(), pd.getLogistCode());
+				pd.getCategory().getType(), pd.getLogistCode(), pd.getAvailable());
 
 	}
 

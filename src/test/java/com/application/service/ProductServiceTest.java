@@ -35,8 +35,8 @@ class ProductServiceTest {
 		Integer[] size = { 34, 35, 36 };
 		validCategory = new Category("Social");
 		invalidCategory = new Category(null);
-		validProduct = new Product("Nike", 200.00, size, "url_da_imagem", validCategory, "José");
-		invalidProduct = new Product("Nike", 200.00, size, "url_da_imagem", invalidCategory, "José");
+		validProduct = new Product("Nike", 200.00, size, "url_da_imagem", validCategory, "José", true);
+		invalidProduct = new Product("Nike", 200.00, size, "url_da_imagem", invalidCategory, "José", true);
 
 		Mockito.when(repository.save(validProduct)).thenReturn(validProduct);
 		Mockito.doThrow(IllegalArgumentException.class).when(repository).save(invalidProduct);
