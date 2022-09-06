@@ -58,6 +58,8 @@ public class ProductService {
 		product1.setImage(pd.getImage());
 		product1.setTypeCategory(pd.getCategory().getType());
 		product1.setLogistCode(pd.getLogistCode());
+		product1.setAvailable(pd.getAvailable());
+
 		return product1;
 	}
 

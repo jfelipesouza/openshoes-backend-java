@@ -44,6 +44,14 @@ public class ProductDto {
 
 
 
+	public Boolean getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(Boolean available) {
+		this.available = available;
+	}
+
 	public String getLogistCode() {
 		return logistCode;
 	}
