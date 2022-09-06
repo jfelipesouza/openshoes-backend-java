@@ -31,7 +31,17 @@ public class Product {
 	@NotBlank(message= "Informe código do lojista")
 	@Column(nullable= false)
 	private String logistCode;
+	private Boolean available= true;
 	
+	
+	public Boolean getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(Boolean available) {
+		this.available = available;
+	}
+
 	public String getLogistCode() {
 		return logistCode;
 	}
@@ -116,13 +126,14 @@ public class Product {
 		this.category = category;
 	}
 
-	public Product(String model, Double price, Integer[] size, String image, Category category, String logistCode) {
+	public Product(String model, Double price, Integer[] size, String image, Category category, String logistCode, Boolean available) {
 		this.model = model;
 		this.price = price;
 		this.size = size;
 		this.image = image;
 		this.category = category;
 		this.logistCode= logistCode;
+		this.available= available;
 	}
 
 	public Product() {

@@ -54,7 +54,7 @@ class ProductControllerTest {
 		newProduct = new ProductDto();
 		Integer[] size = { 34, 35, 36 };
 		validProduct = new ProductDto(existingId, "Nike", 200.00, size, "url_da_imagem", validCategory.getType(),
-				"José");
+				"José", true);
 
 		Mockito.when(service.findByIdProduct(existingId)).thenReturn(validProduct);
 		Mockito.doThrow(EntityNotFoundException.class).when(service).findByIdProduct(nonExistingId);

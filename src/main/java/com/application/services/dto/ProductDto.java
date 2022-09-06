@@ -12,6 +12,7 @@ public class ProductDto {
 	private String image;
 	private String typeCategory;
 	private String logistCode;
+	private Boolean available;
 
 
 
@@ -27,9 +28,10 @@ public class ProductDto {
 		this.image = product.getImage();
 		this.typeCategory= product.getCategory().getType();
 		this.logistCode= product.getLogistCode();
+		this.available= product.getAvailable();
 	}
 
-	public ProductDto(Long id,String model, Double price, Integer[] size, String image, String typeCategory, String logistCode) {
+	public ProductDto(Long id,String model, Double price, Integer[] size, String image, String typeCategory, String logistCode, Boolean available) {
 		this.id = id;
 		this.model = model;
 		this.price = price;
@@ -37,6 +39,7 @@ public class ProductDto {
 		this.image = image;
 		this.typeCategory= typeCategory;
 		this.logistCode= logistCode;
+		this.available= available;
 	}
 
 
