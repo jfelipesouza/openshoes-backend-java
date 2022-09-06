@@ -7,6 +7,7 @@
 
     create table product (
        id  bigserial not null,
+        available boolean,
         created_at TIMESTAMP WITHOUT TIME ZONE,
         image varchar(255) not null,
         logist_code varchar(255) not null,
